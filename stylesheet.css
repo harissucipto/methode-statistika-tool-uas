@@ -1,0 +1,24 @@
+.inputan {
+    width: 100px;
+    padding-left: 5px;
+    margin-left: 5%;
+    border-left: 6px solid green;
+}
+
+.perintah {
+    margin-bottom: 15px;
+}
+
+.jawaban {
+    border-left: 1em solid lightblue;
+    padding-left: 2%;
+    margin-left: 2px;
+}
+
+div#kolomData {
+    display: none;
+}
+
+div#hasil {
+    display: none;
+}
