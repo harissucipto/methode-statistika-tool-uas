@@ -73,7 +73,7 @@ function temukanJawaban() {
     teks += "<p>p(" + komponen[0] + ") = (" + n2 + "/ " + komponen[3] + ") " + komponen[4] + "</p>";
     teks += "<p>p(" + komponen[0] + ") = (" + n2 + "/ " + x3 + ") " + p3.toFraction(true) + "</p>";
     teks += "<p>p(" + komponen[0] + ") = " + akhir.toFraction(true) + "</p>";
-    teks += "<p>p(" + komponen[0] + ") = " + akhir + "</p>";
+    teks += "<p>p(" + komponen[0] + ") = " + parseFloat(akhir).toFixed(2) + "</p>";
     $("#jawaban").html(teks);
 }
 
