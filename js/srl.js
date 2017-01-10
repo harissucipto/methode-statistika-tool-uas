@@ -47,11 +47,20 @@ buttonMasukan.addEventListener("click", function() {
 
     jumlahData = Number(banyakData.value);
     var textsnya = "";
+    textsnya += "<table class='isiTable'>";
+    textsnya += "<tr>";
+    textsnya += "<th>nomor</th>";
+    textsnya += "<th>x</th>";
+    textsnya += "<th>y</th>";
+    textsnya += "</tr>";
     var no = 0;
     for (var i = 0; i < jumlahData; i++) {
         no++;
-        textsnya += '<p>' + no + ' <input class="x" type="number"> <input class="y" type="number"><\p>';
+        textsnya += "<tr>";
+        textsnya += '<td>' + no + '</td><td> <input class="x" type="text"> </td><td><input class="y" type="text"></td>';
+        textsnya += "</tr>";
     }
+    textsnya += "</table>";
     data.innerHTML = textsnya;
 });
 
@@ -60,9 +69,9 @@ buttonMasukan.addEventListener("click", function() {
 buttonProses.addEventListener("click", function() {
     for (var i = 0; i < jumlahData; i++) {
         // loop lakukan perhitungan dan pengambilan x2, y2, x * y
-        nilaiX[i] = Number(document.querySelectorAll(".x")[i].value);
+        nilaiX[i] = parseFloat(document.querySelectorAll(".x")[i].value);
         nilaiXkuadrat[i] = Math.pow(nilaiX[i], 2);
-        nilaiY[i] = Number(document.querySelectorAll(".y")[i].value);
+        nilaiY[i] = parseFloat(document.querySelectorAll(".y")[i].value);
         nilaiYkuadrat[i] = Math.pow(nilaiY[i], 2);
         nilaiXkaliY[i] = nilaiX[i] * nilaiY[i];
     }
@@ -118,27 +127,43 @@ function ambilJumlahNilai() {
 function cetakTableHasil() {
     jumlahData = Number(banyakData.value);
     var textsnya = "";
+    textsnya += "<table class='isiTable'>";
+    textsnya += "<tr>";
+    textsnya += "<th>nomor</th>";
+    textsnya += "<th>X</th>";
+    textsnya += "<th>Y</th>";
+    textsnya += "<th>X^2</th>";
+    textsnya += "<th>Y^2</th>";
+    textsnya += "<th>X * Y</th>";
+    textsnya += "</tr>";
     var no = 0;
     for (var i = 0; i < jumlahData; i++) {
         no++;
-        textsnya += '<p>' + no + ' <input class="x" type="number" value="' + nilaiX[i] +
-            '" readonly="readonly"> <input class="y" type="number"  value="' + nilaiY[i] +
-            '"readonly="readonly"> <input class="x2" type="number"  value="' + nilaiXkuadrat[i] +
-            '"readonly="readonly"> <input class="x2" type="number"  value="' + nilaiYkuadrat[i] +
-            '"readonly="readonly"> <input class="xkaliy" type="number"  value="' + nilaiXkaliY[i] +
-            '"readonly="readonly"> <\p>';
+        textsnya += "<tr>";
+        textsnya += '<td>' + no + '</td><td>' + nilaiX[i] +
+            '</td><td>' + nilaiY[i] +
+            '</td><td>' + nilaiXkuadrat[i] +
+            '</td><td> ' + nilaiYkuadrat[i] +
+            '</td><td> ' + nilaiXkaliY[i] +
+            '</td>';
+        textsnya += "</tr>";
     }
-    textsnya += '<p> <input class="ex" type="text" value="Ex = ' + jumlahNilaiX +
-        '" readonly="readonly"> <input class="ey" type="text"  value="Ey = ' + jumlahNilaiY +
-        '"readonly="readonly"> <input class="ex2" type="text"  value="Ex2 = ' + jumlahNilaiXkuadrat +
-        '"readonly="readonly"> <input class="ex2" type="text"  value="Ey2 = ' + jumlahNilaiYKuadrat +
-        '"readonly="readonly"> <input class="exkaliy" type="text"  value="Ex*y = ' + jumlahNilaiXkaliY +
-        '"readonly="readonly"> <\p>';
+    textsnya += "<tr>";
+    textsnya += "<td>Totalnya = </td>";
+    textsnya += '<td>' + jumlahNilaiX +
+        '</td><td>' + jumlahNilaiY +
+        '</td><td> ' + jumlahNilaiXkuadrat +
+        '</td><td>' + jumlahNilaiYKuadrat +
+        '</td><td>' + jumlahNilaiXkaliY +
+        '</td>';
+    textsnya += "</td>";
+    textsnya += "</table>";
+
     hasilTable.innerHTML = textsnya;
 }
 
 function cetakKonsataA() {
-    var teks = "<p>a = ((Ey)(Ex2) - (Ey)(Exy)) / n(Ex2) - (Ex)p2</p>";
+    var teks = "<p>a = ((Ey)(Ex^2) - (Ey)(Exy)) / n(Ex^2) - (Ex)^2</p>";
     teks += "<p>a = ((" + jumlahNilaiY + ")(" + jumlahNilaiXkuadrat + ") - (" + jumlahNilaiY +
         ")(" + jumlahNilaiXkaliY + ")) / " + jumlahData + "(" + jumlahNilaiXkuadrat + ") - (" +
         jumlahNilaiX + ")p2</p>";
@@ -148,7 +173,7 @@ function cetakKonsataA() {
 
 function cetakKonsataB() {
     var teks = solusiRumus.innerHTML;
-    teks += "<p>b = (n(Exy) - (Ex)(Ey)) / n(Ex2) - (Ex)p2</p>";
+    teks += "<p>b = (n(Exy) - (Ex)(Ey)) / n(Ex^2) - (Ex)^2</p>";
     teks += "<p>a = (" + jumlahData + "(" + jumlahNilaiXkaliY + ") - (" + jumlahNilaiX +
         ")(" + jumlahNilaiY + ")) / " + jumlahData + "(" + jumlahNilaiXkuadrat + ") - (" +
         jumlahNilaiX + ")p2</p>";

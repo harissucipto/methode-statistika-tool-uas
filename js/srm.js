@@ -32,18 +32,26 @@ var a;
 var b;
 var y;
 
+// finishing;
+var b1;
+var b2;
+var akhirA;
+
+/*
+
+
+*/
+
+
+
 //hasil
-var xNumber = document.querySelector("#Xnumber");
+var xparseFloat = document.querySelector("#XparseFloat");
 var buttonCariY = document.querySelector("#cariY");
 var hasilY = document.querySelector("#hasilY");
 var hasilTable = document.querySelector("#hasilTable");
 var solusiRumus = document.querySelector("#solusiRumus");
 
 
-buttonCariY.addEventListener("click", function() {
-    y = a + (b * Number(xNumber.value));
-    hasilY.innerHTML = "Y = " + y.toFixed(2);
-});
 
 
 // rumus Y = a + bX;
@@ -54,13 +62,23 @@ buttonMasukan.addEventListener("click", function() {
     hasil.style.display = "none";
     kolomData.style.display = "block";
 
-    jumlahData = Number(banyakData.value);
+    jumlahData = parseFloat(banyakData.value);
     var textsnya = "";
+    textsnya += "<table class='isiTable'>";
+    textsnya += "<tr>";
+    textsnya += "<th>nomor</th>";
+    textsnya += "<th>x</th>";
+    textsnya += "<th>x2</th>";
+    textsnya += "<th>y</th>";
+    textsnya += "</tr>";
     var no = 0;
     for (var i = 0; i < jumlahData; i++) {
         no++;
-        textsnya += '<p>' + no + ' <input class="x" type="number"> <input class="xke2" type="number"> <input class="y" type="number"><\p>';
+        textsnya += "<tr>";
+        textsnya += '<td>' + no + '</td><td> <input class="x" type="text"> </td><td><input class="xke2" type="text"></td><td> <input class="y" type="text"></td><\p>';
+        textsnya += "</tr>";
     }
+    textsnya += "</table>";
     data.innerHTML = textsnya;
 });
 
@@ -69,11 +87,11 @@ buttonMasukan.addEventListener("click", function() {
 buttonProses.addEventListener("click", function() {
     for (var i = 0; i < jumlahData; i++) {
         // loop lakukan perhitungan dan pengambilan x2, xke2, y2, x * y
-        nilaiX[i] = Number(document.querySelectorAll(".x")[i].value);
+        nilaiX[i] = parseFloat(document.querySelectorAll(".x")[i].value);
         nilaiXkuadrat[i] = Math.pow(nilaiX[i], 2);
-        nilaiXKe2[i] = Number(document.querySelectorAll(".xke2")[i].value);
+        nilaiXKe2[i] = parseFloat(document.querySelectorAll(".xke2")[i].value);
         nilaiXKe2kuadrat[i] = Math.pow(nilaiXKe2[i], 2);
-        nilaiY[i] = Number(document.querySelectorAll(".y")[i].value);
+        nilaiY[i] = parseFloat(document.querySelectorAll(".y")[i].value);
         nilaiYkuadrat[i] = Math.pow(nilaiY[i], 2);
         nilaiXkaliY[i] = nilaiX[i] * nilaiY[i];
         nilaiXKe2KaliX[i] = nilaiXKe2[i] * nilaiX[i];
@@ -84,9 +102,7 @@ buttonProses.addEventListener("click", function() {
     ambilJumlahNilai();
     pecahkanRumus();
     cetakTableHasil();
-    cetakKoefesienA1();
-    cetakKoefesienA2();
-    cetakKoefesienA0();
+    tampilkanHasilOperasisatu();
 });
 
 
@@ -101,7 +117,6 @@ function penumlahanNilai(data) {
 
 function pecahkanRumus() {
     hasil.style.display = "block";
-    rumusnya.textContent = "Y = " + a0 + " + " + a1 + " * X ";
 
 }
 
@@ -115,88 +130,156 @@ function ambilJumlahNilai() {
     jumlahNilaiXKe2kuadrat = penumlahanNilai(nilaiXKe2kuadrat);
     jumlahNilaiXKe2KaliX = penumlahanNilai(nilaiXKe2KaliX);
     jumlahNilaiXKe2KaliY = penumlahanNilai(nilaiXKe2KaliY);
-    a1 = caria1();
-    a2 = caria2();
-    a0 = caria0();
 }
 
 function cetakTableHasil() {
-    jumlahData = Number(banyakData.value);
+    jumlahData = parseFloat(banyakData.value);
     var textsnya = "";
+    textsnya += "<table class='isiTable'>";
+    textsnya += "<tr>";
+    textsnya += "<th>nomor</th>";
+    textsnya += "<th>X</th>";
+    textsnya += "<th>Y</th>";
+    textsnya += "<th>X^2</th>";
+    textsnya += "<th>Y^2</th>";
+    textsnya += "<th>X * Y</th>";
+    textsnya += "<th>X2</th>";
+    textsnya += "<th>X2 ^2</th>";
+    textsnya += "<th>X2 * x</th>";
+    textsnya += "<th>X2 * y</th>";
+    textsnya += "</tr>";
     var no = 0;
     for (var i = 0; i < jumlahData; i++) {
         no++;
-        textsnya += '<p>' + no + ' <input class="x" type="number" value="' + nilaiX[i] +
-            '" readonly="readonly"> <input class="y" type="number"  value="' + nilaiY[i] +
-            '"readonly="readonly"> <input class="x2" type="number"  value="' + nilaiXkuadrat[i] +
-            '"readonly="readonly"> <input class="x2" type="number"  value="' + nilaiYkuadrat[i] +
-            '"readonly="readonly"> <input class="xkaliy" type="number"  value="' + nilaiXkaliY[i] +
-            '"readonly="readonly"> <input class="xke2" type="number"  value="' + nilaiXKe2[i] +
-            '"readonly="readonly"> <input class="xke2kuadrat" type="number"  value="' + nilaiXKe2kuadrat[i] +
-            '"readonly="readonly"> <input class="xke2kalix" type="number"  value="' + nilaiXKe2KaliX[i] +
-            '"readonly="readonly"> <input class="xke2kaliy" type="number"  value="' + nilaiXKe2KaliY[i] +
-            '"readonly="readonly"> <\p>';
+        textsnya += "<tr>";
+        textsnya += '<td>' + no + '</td><td>' + nilaiX[i] +
+            '</td><td>' + nilaiY[i] +
+            '</td><td>' + nilaiXkuadrat[i] +
+            '</td><td>' + nilaiYkuadrat[i] +
+            '</td><td>' + nilaiXkaliY[i] +
+            '</td><td>' + nilaiXKe2[i] +
+            '</td><td>' + nilaiXKe2kuadrat[i] +
+            '</td><td>' + nilaiXKe2KaliX[i] +
+            '</td><td>' + nilaiXKe2KaliY[i] +
+            '</td> <\p>';
+        textsnya += "</tr>";
     }
-    textsnya += '<p> <input class="ex" type="text" value="Ex = ' + jumlahNilaiX +
-        '" readonly="readonly"> <input class="ey" type="text"  value="Ey = ' + jumlahNilaiY +
-        '"readonly="readonly"> <input class="ex2" type="text"  value="Ex2 = ' + jumlahNilaiXkuadrat +
-        '"readonly="readonly"> <input class="ex2" type="text"  value="Ey2 = ' + jumlahNilaiYKuadrat +
-        '"readonly="readonly"> <input class="exkaliy" type="text"  value="Ex*y = ' + jumlahNilaiXkaliY +
-        '"readonly="readonly"> <input class="exke2" type="text"  value="Exke2 = ' + jumlahNilaiXKe2 +
-        '"readonly="readonly"> <input class="exke2kuadrat" type="text"  value="Exke2kuadrat = ' + jumlahNilaiXKe2kuadrat +
-        '"readonly="readonly"> <input class="exke2kalix" type="text"  value="Exke2*x = ' + jumlahNilaiXKe2KaliX +
-        '"readonly="readonly"> <input class="exke2kaliy" type="text"  value="Exke2*y = ' + jumlahNilaiXKe2KaliY +
-        '"readonly="readonly"> <\p>';
+    textsnya += "<tr>";
+    textsnya += "<td>Totalnya = </td>";
+    textsnya += '<td>' + jumlahNilaiX +
+        '</td><td> ' + jumlahNilaiY +
+        '</td><td>' + jumlahNilaiXkuadrat +
+        '</td><td>' + jumlahNilaiYKuadrat +
+        '</td><td>' + jumlahNilaiXkaliY +
+        '</td><td>' + jumlahNilaiXKe2 +
+        '</td><td>' + jumlahNilaiXKe2kuadrat +
+        '</td><td>' + jumlahNilaiXKe2KaliX +
+        '</td><td>' + jumlahNilaiXKe2KaliY +
+        '</td>';
+    textsnya += "</td>";
+    textsnya += "</table>";
     hasilTable.innerHTML = textsnya;
 }
 
 
-function cetakKoefesienA1() {
-    var teks = solusiRumus.innerHTML;
-    teks += "<p>a1 = ((Exke2^2)(Ex * y) - (Ex*xke2)(Exke2*y)) / ( ((Ex^2)(Exke2^2)) - (Ex*xkedua)^2 )</p>";
-    teks += "<p>a1 = (" + jumlahNilaiXKe2kuadrat + ")(" + jumlahNilaiXkaliY +
-        ") - (" + jumlahNilaiXKe2KaliX + ")(" + jumlahNilaiXKe2KaliY + ")" +
-        "/ ( (" + jumlahNilaiXkuadrat + ")(" + jumlahNilaiXKe2kuadrat + ") - ( pangkatdua(" +
-        jumlahNilaiXKe2KaliX + "))<p>";
-    teks += "<p>a1 = " + a1 + "<p>";
-    solusiRumus.innerHTML = teks;
+function tampilkanHasilOperasisatu() {
+    tahanDulu();
 }
 
-function caria1() {
-    var a1 = (jumlahNilaiXKe2kuadrat * jumlahNilaiXkaliY) - (jumlahNilaiXKe2KaliX * jumlahNilaiXKe2KaliY);
-    a1 = a1 / ((jumlahNilaiXkuadrat * jumlahNilaiXKe2kuadrat) - (Math.pow(jumlahNilaiXKe2KaliX), 2));
-    return a1;
+function tahanDulu() {
+    var teks = "";
+    var tempData = operasiPersiapan();
+    tempData.forEach(function(datanya, index) {
+        teks += "<p>tahan" + index + ": " + datanya + "</p>";
+    });
+    $("#persipanOperasi").html(teks);
+    lanjutKedua();
+}
+
+function lanjutKedua() {
+    var tempData = operasiPersiapan();
+    var teks = $("#persipanOperasi").html();
+    b1 = operasiKetiga(tempData[1], tempData[3], tempData[4], tempData[5], tempData[0]);
+    b2 = operasiKetiga(tempData[0], tempData[4], tempData[3], tempData[5], tempData[1]);
+    akhirA = operasiKeempat(jumlahNilaiY, b1, jumlahNilaiX, b2, jumlahNilaiXKe2, jumlahData);
+    teks += "<p> b1 = " + b1 + "</p>";
+    teks += "<p> b2 = " + b2 + "</p>";
+    teks += "<p> a = " + akhirA + "</p>";
+    teks += "<p>Y = " + akhirA + " - " + b1 + "X1 - " + b2 + "X2</p>";
+    teks += "<p>Korelasinya yaitu = akar (((b1 * Exy) + (b2 * Ex2y)) / Ey^2) </p>";
+    teks += "<p>Korelasinya yaitu = akar (((" + b1 + " * " + jumlahNilaiXkaliY + ") + (" + b2 + " * " + jumlahNilaiXKe2KaliY + ")) / " + jumlahNilaiYKuadrat + ") </p>";
+    teks += "<p>Korelasinya yaitu = akar (((" + (b1 * jumlahNilaiXkaliY) + ") + (" + (b2 * jumlahNilaiXKe2KaliY) + ")) / " + jumlahNilaiYKuadrat + ") </p>";
+    teks += "<p>Korelasinya yaitu = akar (((" + ((b1 * jumlahNilaiXkaliY) + (b2 * jumlahNilaiXKe2KaliY)) + ")) / " + jumlahNilaiYKuadrat + ") </p>";
+    teks += "<p>Korelasinya yaitu = akar (((" + (((b1 * jumlahNilaiXkaliY) + (b2 * jumlahNilaiXKe2KaliY)) / jumlahNilaiYKuadrat) + ") </p>";
+    teks += "<p>Korelasinya yaitu = " + (Math.sqrt((((b1 * jumlahNilaiXkaliY) + (b2 * jumlahNilaiXKe2KaliY)) / jumlahNilaiYKuadrat))).toFixed(3) + " </p>";
+    teks += "<p>Korelasinya yaitu = " + kesimpulanKorelasi((Math.sqrt((((b1 * jumlahNilaiXkaliY) + (b2 * jumlahNilaiXKe2KaliY)) / jumlahNilaiYKuadrat))).toFixed(3)) + " </p>";
+    teks += "<p>Masukan X1 = <input type='text' id='baruX1'></p>";
+    teks += "<p>Masukan X2 = <input type='text' id='baruX2'></p>";
+    $("#persipanOperasi").html(teks);
+}
+
+$("#cariBaru").on("click", function() {
+    var teks = "";
+    var baruX1 = parseFloat($("#baruX1").val());
+    var baruX2 = parseFloat($("#baruX2").val());
+    teks += "<p>Y = " + akhirA + " - " + b1 + "" + baruX1 + " - " + b2 + "" + baruX2 + "</p>";
+    teks += "<p>Y = " + akhirA + " - " + (b1 * baruX1) + " - " + (b2 * baruX2) + "</p>";
+    teks += "<p>Y = " + (akhirA - (b1 * baruX1) - (b2 * baruX2)) + "</p>";
+    $("#hCariBaru").html(teks);
+});
+
+function temukanRumus() {
+    var teks = $("#persipanOperasi").html();
+    teks += "<p>Y ="
 }
 
 
-function cetakKoefesienA2() {
-    var teks = solusiRumus.innerHTML;
-    teks += "<br><p>a2 = (Ex1^2)(EXke2*y) - (Ex*xke2)(Ex*y) / (Ex1^2) (Exke2)^2  - (Exke2*x)^2</p>";
-    teks += "<p>a2 = (" + jumlahNilaiXkuadrat + ")(" + jumlahNilaiXKe2KaliY + ") - ( " +
-        jumlahNilaiXKe2KaliX + " ) (" + jumlahNilaiXkaliY + ")" +
-        "/ (" + jumlahNilaiXkuadrat + ") pangkat2( + " + jumlahNilaiXKe2 + ")" + " - pangkat2( " + jumlahNilaiXKe2KaliX + ") </p>";
-    teks += "<p>a2 = " + a2 + "<p>";
-    solusiRumus.innerHTML = teks;
+function operasiSatu(a, b, c) {
+    var tempOperasi = a - (Math.pow(b, 2) / c);
+    return tempOperasi.toFixed(2);
 }
 
-function caria2() {
-    var a2 = (jumlahNilaiXkuadrat * jumlahNilaiXKe2KaliY) - (jumlahNilaiXKe2KaliX * jumlahNilaiXkaliY);
-    a2 = a2 / ((jumlahNilaiXkuadrat * Math.pow(jumlahNilaiXKe2, 2) - Math.pow(jumlahNilaiXKe2KaliX, 2)));
-    return a2;
+function operasiKedua(a, b, c, d) {
+    var tempOperasi = a - ((b * c) / d);
+    return tempOperasi.toFixed(2);
 }
 
-function cetakKoefesienA0() {
-    var banyakData = nilaiX.length;
-    var teks = solusiRumus.innerHTML;
-    teks += "<br><p>a0 = (Ey/n) - (Ex/n) - (Exke2/n)</p>";
-    teks += "<p>a0 = (" + jumlahNilaiY + "/" + banyakData + ") - (" + jumlahNilaiX + "/" + banyakData + " ) - (" + jumlahNilaiXKe2 + "/" + banyakData + ")</p>";
-    teks += "<p>a0 = (" + jumlahNilaiY / banyakData + ") - (" + jumlahNilaiX / banyakData + ") - (" + jumlahNilaiXKe2 / banyakData + ")</p>";
-    teks += "<p>a0 = " + a0;
-    solusiRumus.innerHTML = teks;
+function operasiKetiga(a, b, c, d, e) {
+    var tempOperasiKetiga = ((a * b) - (c * d)) / ((e * a) - (Math.pow(d, 2)));
+    return tempOperasiKetiga.toFixed(3);
 }
 
-function caria0() {
-    var banyakData = nilaiX.length;
-    var a0 = (jumlahNilaiY / banyakData) - (jumlahNilaiX / banyakData) - (jumlahNilaiXKe2 / banyakData);
-    return a0;
+function operasiKeempat(a, b, c, d, e, f) {
+    var tempOperasiKempat = (a - (b * c) - (d * e)) / f;
+    return tempOperasiKempat.toFixed(3);
+}
+
+function operasiPersiapan() {
+    var persiapanHasil = [];
+    persiapanHasil[0] = operasiSatu(jumlahNilaiXkuadrat, jumlahNilaiX, jumlahData);
+    persiapanHasil[1] = operasiSatu(jumlahNilaiXKe2kuadrat, jumlahNilaiXKe2, jumlahData);
+    persiapanHasil[2] = operasiSatu(jumlahNilaiYKuadrat, jumlahNilaiY, jumlahData);
+    persiapanHasil[3] = operasiKedua(jumlahNilaiXkaliY, jumlahNilaiX, jumlahNilaiY, jumlahData);
+    persiapanHasil[4] = operasiKedua(jumlahNilaiXKe2KaliY, jumlahNilaiXKe2, jumlahNilaiY, jumlahData);
+    persiapanHasil[5] = operasiKedua(jumlahNilaiXKe2KaliX, jumlahNilaiX, jumlahNilaiXKe2, jumlahData);
+    return persiapanHasil;
+}
+
+function kesimpulanKorelasi(nilai) {
+    var hasilKesimpulan = nilai;
+    var kesimpulan = "Jadi Korelasinya ";
+    if (hasilKesimpulan <= 0) {
+        kesimpulan += " Tidak ada korelasi diantar dua variable (0 atau < 0)";
+    } else if (hasilKesimpulan <= 0.25) {
+        kesimpulan += " Korelasi sangat lemah (>0 - 0,25)";
+    } else if (hasilKesimpulan <= 0.5) {
+        kesimpulan += " Korelasi cukup  (>0.25 - 0.5)";
+    } else if (hasilKesimpulan <= 0.75) {
+        kesimpulan += " Korelasi kuat (>0.5 - 0.75)";
+    } else if (hasilKesimpulan <= 0.99) {
+        kesimpulan += " Korelasi sangat kuat (>0.75 - 0.99)";
+    } else if (hasilKesimpulan <= 1) {
+        kesimpulan += " Korelasi sempurna (>0.99 - 1)";
+    }
+    return kesimpulan;
 }

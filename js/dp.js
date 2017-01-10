@@ -23,9 +23,9 @@ $("#proses").on("click", function() {
 
 
 function ekstrakNilai() {
-    n = parseInt($("input#n.inputan").val());
+    n = parseFloat($("input#n.inputan").val());
     p = parseFloat($("input#p.inputan").val());
-    x = parseInt($("input#x.inputan").val());
+    x = parseFloat($("input#x.inputan").val());
 }
 
 function temukanRumus() {

@@ -60,6 +60,9 @@ $("#cApangkat").on("click", function() {
     teks += "<p> A pangkat = " + nilaiA.toFraction(true) + "^" +
         pangkatA + " = " +
         nilaiA.pow(pangkatA) + "</p>";
+    teks += "<p> A pangkat = " + nilaiA.toFraction(true) + "^" +
+        pangkatA + " = " +
+        nilaiA.pow(pangkatA).toFraction(true) + "</p>";
 
     $("#jawaban").html(teks);
 });
@@ -71,6 +74,9 @@ $("#cBpangkat").on("click", function() {
     teks += "<p> B pangkat = " + nilaiB.toFraction(true) + "^" +
         pangkatB + " = " +
         nilaiB.pow(pangkatB) + "</p>";
+    teks += "<p> B pangkat = " + nilaiB.toFraction(true) + "^" +
+        pangkatB + " = " +
+        nilaiB.pow(pangkatB).toFraction(true) + "</p>";
 
     $("#jawaban").html(teks);
 });

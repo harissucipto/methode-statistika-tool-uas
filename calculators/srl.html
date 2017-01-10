@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Analisa Regelasi Sederhana</title>
     <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
@@ -21,12 +22,10 @@
             <hr>
             <li class="perintah">
                 <div id="kolomData">
-                    <p>No
-                        <input type="text" value="x" readonly="readonly">
-                        <input type="text" value="y" readonly="readonly">
-                    </p>
+
                     <div id="data"></div>
-                    <button id="prosesData" class="btn btn-info btn-sm">Proses</button>
+                    <br>
+                    <button id="prosesData" class="btn btn-default btn-sm">Proses</button>
                 </div>
             </li>
         </ul>
@@ -35,13 +34,6 @@
     <div class="jawaban" id="hasil">
         <hr>
         <h3>Langkah Pemecahan Masalah</h3>
-        <p>No
-            <input type="text" value="x" readonly="readonly">
-            <input type="text" value="y" readonly="readonly">
-            <input type="text" value="x2" readonly="readonly">
-            <input type="text" value="y2" readonly="readonly">
-            <input type="text" value="x kali y" readonly="readonly">
-        </p>
         <div id="hasilTable"></div>
 
 
@@ -64,7 +56,7 @@
 
         <!-- korelasinya -->
         <h3>Korelasinya yaitu:</h3>
-        <p>r = nExy - ExEy / akar((nEX2 - (Ex)p2) . (nEY2 - (EY)2)) </p>
+        <p>r = nExy - ExEy / akar((nEX^2 - (Ex)^2) . (nEY^2) - (EY)^2)) </p>
         <p id="rumuskorelasi"></p>
         <p>r = <span id="korelasi">ini hasilnya</span></p>
         <p id="kesimpulankorelasi"></p>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Analisa Regelasi Sederhana</title>
     <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
@@ -21,13 +22,12 @@
             <hr>
             <li class="perintah">
                 <div id="kolomData">
-                    <p>No
-                        <input type="text" value="x" readonly="readonly">
-                        <input type="text" value="x2" readonly="readonly">
-                        <input type="text" value="y" readonly="readonly">
-                    </p>
+
                     <div id="data"></div>
-                    <button id="prosesData" class="btn btn-info btn-sm">Proses</button>
+                    <br>
+                    <button id="prosesData" class="btn btn-default btn-sm">1. Proses</button><br>
+                    <button id="cariBaru" class="btn btn-default btn-sm">2. Cari Persamaan Baru Jika sudah ketemu</button>
+                    <div id="hCariBaru"></div>
                 </div>
             </li>
         </ul>
@@ -36,37 +36,12 @@
     <div class="jawaban" id="hasil">
         <hr>
         <h3>Langkah Pemecahan Masalah</h3>
-        <p>No
-            <input type="text" value="x" readonly="readonly">
-            <input type="text" value="y" readonly="readonly">
-            <input type="text" value="x^2" readonly="readonly">
-            <input type="text" value="y^2" readonly="readonly">
-            <input type="text" value="x kali y" readonly="readonly">
-            <input type="text" value="x2" readonly="readonly">
-            <input type="text" value="x2^2" readonly="readonly">
-            <input type="text" value="x2*x" readonly="readonly">
-            <input type="text" value="x2*y" readonly="readonly">
-        </p>
         <div id="hasilTable"></div>
-
-
         <hr>
-        <p>y = a + bX</p>
-        <hr>
-        <h3>Cari Koefisen a0, a1, a2:</h3>
-        <div id="solusiRumus"></div>
-        <hr>
-        <h3>Ketemu Rumus Persamaanya</h3>
-        <p>y = a0 + a1X + a2XKe2</p>
-        <p id="rumusnya"></p>
-
-        <p>Masukan x untuk a1 :
-            <input type="number" id="Xnumber">
-            <button id="cariY">Cari Y </button>
-        </p>
-
-        <p id="hasilY"></p>
+        <div id="persipanOperasi"></div>
     </div>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/fraction.min.js"></script>
     <script type="text/javascript" src="../js/srm.js"></script>
 </body>
 

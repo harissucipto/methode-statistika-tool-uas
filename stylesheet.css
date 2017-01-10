@@ -22,3 +22,20 @@ div#kolomData {
 div#hasil {
     display: none;
 }
+
+.isiTable th,
+.isiTable td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    font-weight: bolder;
+}
+
+.isiTable th {
+    background: yellow;
+}
+
+input {
+    text-align: center;
+    width: 50px;
+}
